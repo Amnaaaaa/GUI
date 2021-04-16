@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package procurementproject;
+package procurementmanagement;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +20,10 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ContactsTableModel extends AbstractTableModel {
 
-    private List<Contact> li = new ArrayList();
-    private String[] columnNames = { "Name", "Email", "Contact Number", "Date Of Birth", "Edit","Delete"};
+    private List<Employee> li = new ArrayList();
+    private String[] columnNames = { "Name", "Email", "CellNo", "Dob", "Add","Delete"};
 
-    public ContactsTableModel(List<Contact> list){
+    public ContactsTableModel(List<Employee> list){
          this.li = list;
     }
 
@@ -52,18 +52,18 @@ public class ContactsTableModel extends AbstractTableModel {
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Contact si = li.get(rowIndex);
+        Employee si = li.get(rowIndex);
         switch (columnIndex) {
             case 0: 
                 return si.getName();
             case 1:
                 return si.getEmail();
             case 2:
-                return si.getContactNumber();
+                return si.getcellNo();
             case 3:
                 return si.getDob();
             case 4:
-                return "Edit";
+                return "Add";
             case 5:
                 
                  
@@ -100,20 +100,30 @@ public class ContactsTableModel extends AbstractTableModel {
     }
    
     
-    public void editRow(int row){
-     String contact = (String)getValueAt(row, 2);
-     AddContactPanel p = new AddContactPanel(contact, "Edit");
-     MainForm.getInstance().goToPage(p);
+    public void addRow(int row){
+     String Employee = (String)getValueAt(row, 2);
+     AddEmployeePanel p = new AddEmployeePanel(employee, "Add");
+     LoginForm.getInstance().goToPage(p);
+     for(int i=0; i<list.size(); i++ )
+     rowData[0]=list.get(i).name;
+     rowData[1]=list.get(i).cellNo;
+     rowData[2]=list.get(i).email;
+     ConatctsTableModel.addRow(rowData);
+    }
+     
                 
     }
+    
     
     
       
     public void deleteRow(int row){
-     String contact = (String)getValueAt(row, 2);
-     AddContactPanel p = new AddContactPanel(contact,  "Delete");
-     MainForm.getInstance().goToPage(p);
+     String Employee = (String)getValueAt(row, 2);
+     AddEmployeePanel p = new AddEmployeePanel(contact,  "Delete");
+     LoginForm.getInstance().goToPage(p);
                 
     }
+    
+    
    
  }

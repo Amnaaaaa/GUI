@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package procurementmanagement;
 /**
  *
  * @author hp
@@ -142,6 +142,15 @@ public class RecordOfEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    public ArrayList Listx(String name,String email,String cellNo,String Dob){
+        ArrayList<Employee> list=new ArrayList<Employee>();
+        Employee ep=new Employee(name,cellNo,email,dob);
+        list.add(ep);
+        return list;
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
